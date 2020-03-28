@@ -36,3 +36,8 @@ Need to add global state.
 4. Make a new file called Transaction.js. Move the li list above and place in this file. Need to pass down props.
 5. Need to determine what sign to be used based on positive or negative number for the dollar amount. Use a ternary and a variable.
 6. Need to handle the border color. Use a ternary
+
+## Step 4
+
+1. Import Globalcontext and transaction state into Balance.js.
+2. Get each amount of transaction using a map function and then a reduce function to get the total.
