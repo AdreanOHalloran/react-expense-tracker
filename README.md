@@ -1,3 +1,4 @@
+<!-- prettier-ignore -->
 ## Step 1
 
 Build out the ui using this html file https://github.com/bradtraversy/vanillawebprojects/blob/master/expense-tracker/index.html
@@ -41,3 +42,18 @@ Need to add global state.
 
 1. Import Globalcontext and transaction state into Balance.js.
 2. Get each amount of transaction using a map function and then a reduce function to get the total.
+3. Import Globalcontext and transaction state into IncomeExpenses.js
+4. Get the total of income and expenses. Use a filter/reduce function.
+
+## Step 5
+
+1. Dipatch a DELETE_TRANSACTION action from the GlobalState to the App Reducer. It's a function with id as param. Pass the function to the GlobalContext.Provider so that context has access to it.
+2. In app Reducer add the action type and filter by the id
+3. Import Global Context etc. to Transaction.js. Get the deleteTransaction from the GlobalContext. Use function to delete transaction from the button
+4. Add Transaction:
+
+- Create an action in global state. Complete the steps as with deleteTransaction
+- Add it to App Reducer. Use a spread operator
+- Import it to AddTransaction.js. Add an onSubmit on form. Make it into its own function. Send a new transaction (Need to generate a randomId). Set component state to blank.
+
+5. Remove initial state from Global Context once this is all done. Not PR'd
