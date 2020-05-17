@@ -1,4 +1,7 @@
 <!-- prettier-ignore -->
+563aa3f05cd9dc2eadd66c02c5d3dff7b4719f24
+branch without MERN stack ```react-exercise-no-backend```
+
 ## Step 1
 
 Build out the ui using this html file https://github.com/bradtraversy/vanillawebprojects/blob/master/expense-tracker/index.html
