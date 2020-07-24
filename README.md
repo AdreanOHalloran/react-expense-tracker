@@ -6,6 +6,10 @@ To begin the back end exercise
 
 `git checkout react-section-good`
 
+To begin after backend has been setup
+
+`git checkout backend-section-complete`
+
 ## Step 1
 
 Build out the ui using this html file https://github.com/bradtraversy/vanillawebprojects/blob/master/expense-tracker/index.html
