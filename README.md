@@ -30,3 +30,39 @@ _the catch is tricky_
 make an if else in the catch. Can send an empty post request in postman and console.log(err) to see the validation message. if (err.name === 'ValidationError'). Inside collection the errors messages in an array using Object.values and mapping over each of these values and getting the message. Send a status 400( which is bad client data )and send success false and error as the messages array just made (can test this again in Postman). ELSE send the same error stuff from the getTransactions function.
 
 To delete a transaction do a findById. Inside the try if not a transaction return a 404 else do an remove on the transaction and do success message. in the catch handle error same as other way in above functions. You can grab an id from an item in the db put the id in the params in postman and delete.
+
+in client package JSON add proxy.
+`"proxy": "http://localhost:5000"`
+in package json at the root at this to scripts.
+`"dev": "concurrently \"npm run server\" \"npm run client\""`
+Add axios in the client folder. cd into client and
+`npm i axios`
+cd .. and then
+`npm run dev`
+
+Integrate with the backend
+Make initialState transactions a blank array.
+Create a new action called getTransactions in GlobalState.js. It should be async because it is an axios request (need to bring axios in). Need to dispatch type 'GET_TRANSACTIONS' and set the response from the backend as the payload. Add to initial state an error property set to null and a loading property. For the error in the getTransactions dispatch dispatch a type called 'TRANSACTION_ERROR' and the payload will be the error response.
+
+Add the dispatch types to the reducer. For GET_TRANSACTIONS (make first case), get the state set the loading to false and use the payload to set transactions. For the 'TRANSACTION_ERROR' (last case), get state and the error is action.payload.
+
+Pass the getTransaction, error and loading function to provider. Call the getTransactions from the transactionList. Put it in a useEffect hook. If you want to see requests in the terminal can add this to server.js underneath the middleware body parser.
+`if ((process.env.NODE_ENV = 'development')) { app.use(morgan('dev')); }`
+
+Add an \_ to the id in transaction.js and in the dispatcher to match the mongoose ID for deleteTransaction. Make delete transaction async. Make an await axios request to delete transaction and dispatch as before. In catch do as done in getTransactions function.
+
+In addTransaction in dispatch. Make async. Since posting data need a variable object config. This is headers `headers: { 'Content-Type': 'application/json' }`. In the try do an axios post. Need for parameter 1. endpoint 2. the data 3. the config. For the dispatch payload it needs to be the response from this request. Handle error in the same way as above.
+
+You can add format number function if you want to handle numbers with commas. Can add util folder in src and a format.js file.
+
+If you want to make it ready for production cd into the client folder. and run `npm run build`. cd back into the server folder. Add path to server file. `const path = require('path');` . Beneath the routes in server.js and above the port include this code.
+
+```
+if (process.env.NODE_ENV === 'production') {
+app.use(express.static('client/build'));
+
+app.get('\*', (req, res) => res.sendFile(path.resolve(\_\_dirname, 'client', 'build', 'index.html')));
+}
+```
+
+You will also need to go into the config and change from development to production. Run npm start at root of server.
